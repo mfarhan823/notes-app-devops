@@ -15,7 +15,7 @@ const titleInput = document.getElementById('titleInput');
 const bodyInput = document.getElementById('bodyInput');
 const colourPicker = document.getElementById('colourPicker');
 
-function loadNotes() 
+function loadNotes() {
   const saved = localStorage.getItem('notes');
   notes = saved ? JSON.parse(saved) : [];
   render();
