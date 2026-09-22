@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+body {
+  background: #14151f;
+  color: #e8e9ee;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 40px;
+  border-bottom: 1px solid #23253299;
+}
+
+.topbar h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.dot-accent {
+  color: #7c5cff;
+}
+
+.search-pill {
+  flex: 1;
+  max-width: 380px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 18px;
+  background: #1e202c;
+  border: 1px solid #2c2e3d;
+  border-radius: 999px;
+  color: #e8e9ee;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#searchInput:focus {
+  border-color: #7c5cff;
+}
+
+#searchInput::placeholder {
+  color: #6b6d7d;
+}
+
+#noteCount {
+  font-size: 12px;
+  color: #6b6d7d;
+  background: #1e202c;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.board {
+  columns: 4 220px;
+  column-gap: 18px;
+  padding: 32px 40px;
+}
+
+@media (max-width: 900px) {
+  .board { columns: 2 200px; }
+}
+@media (max-width: 550px) {
+  .board { columns: 1; }
+  .topbar { flex-wrap: wrap; padding: 18px 20px; }
+}
+
+.note-card {
+  break-inside: avoid;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #ffffff14;
+  animation: rise 0.25s ease;
+  position: relative;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.note-card h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  word-break: break-word;
+}
+
+.note-card p {
+  font-size: 13px;
+  color: #c4c5d2;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-card .timestamp {
+  font-size: 10px;
+  color: #6b6d7d;
+  margin-top: 14px;
+}
+
+.note-card .delete-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background: #ffffff14;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  color: #e8e9ee;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.note-card .delete-btn:hover {
+  opacity: 1;
+}
+
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: 100px 20px;
+  color: #6b6d7d;
+}
+
+.empty-state.show {
+  display: block;
+}
+
+.empty-state p {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #9698a8;
+}
+
+.empty-state span {
+  font-size: 12px;
+}
+
+#fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #7c5cff;
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px #7c5cff55;
+  transition: transform 0.15s, background 0.2s;
+}
+
+#fab:hover {
+  background: #6a4ce6;
+  transform: scale(1.06);
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #00000099;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal {
+  background: #1e202c;
+  border: 1px solid #2c2e3d;
+  border-radius: 16px;
+  padding: 26px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  background: #14151f;
+  border: 1px solid #2c2e3d;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #e8e9ee;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  border-color: #7c5cff;
+}
+
+.modal textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.colour-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s;
+}
+
+.dot:hover {
+  transform: scale(1.15);
+}
+
+.dot.active {
+  border-color: #7c5cff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#cancelBtn {
+  background: transparent;
+  color: #9698a8;
+}
+
+#cancelBtn:hover {
+  color: #e8e9ee;
+}
+
+#saveBtn {
+  background: #7c5cff;
+  color: white;
+}
+
+#saveBtn:hover {
+  background: #6a4ce6;
+}
